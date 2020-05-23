@@ -20,6 +20,9 @@ intellij {
 
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      Changes:<br>
+      <ul>
+        <li>Added comment blocks navigation action</li>
+        <li>Added code folding for baja generated code</li>
+      </ul>"""
 }
