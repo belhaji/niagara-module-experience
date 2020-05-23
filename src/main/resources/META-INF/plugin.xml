@@ -1,11 +1,9 @@
 <idea-plugin>
-    <id>com.belhaji.niagara-module</id>
-    <name>Enhance the niagara modules developers experience</name>
+    <id>com.belhaji.niagara-module-experience</id>
+    <name>Niagara Module Experience</name>
     <vendor email="belhajiadil@gmail.com" url="https://www.linkedin.com/in/belhajiadil/">BELHAJI</vendor>
 
-    <description><![CDATA[
-        This plugin makes your file as a niagara developer by providing a set of features.
-    ]]></description>
+    <description>A plugin to improve niagara modules developers productivity</description>
 
     <extensions defaultExtensionNs="com.intellij">
         <lang.foldingBuilder language="JAVA"
