@@ -13,5 +13,11 @@
     </extensions>
 
     <actions>
+        <action id="com.belhaji.niagara.module.editor.action.CommentBlockNavigationAction"
+                class="com.belhaji.niagara.module.editor.action.CommentBlockNavigationAction"
+                text="Navigate Niagara Blocks" description="Navigate between block comments">
+            <add-to-group group-id="NavigateInFileGroup" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl meta alt N"/>
+        </action>
     </actions>
 </idea-plugin>
