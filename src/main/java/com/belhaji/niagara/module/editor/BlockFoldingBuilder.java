@@ -17,53 +17,41 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class BlockFoldingBuilder extends FoldingBuilderEx implements DumbAware
-{
+public class BlockFoldingBuilder extends FoldingBuilderEx implements DumbAware {
+    public static final String BEGIN_BAJA_AUTO_GENERATED_CODE = "/*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/";
+    public static final String END_BAJA_AUTO_GENERATED_CODE = "/*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/";
 
     @Override
-    public @NotNull FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick)
-    {
-        // Initialize the group of folding regions that will expand/collapse together.
+    public @NotNull FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick) {
         FoldingGroup group = FoldingGroup.newGroup("BAJA_GENERATED_CODE");
-        // Initialize the list of folding regions
         List<FoldingDescriptor> descriptors = new ArrayList<>();
         Collection<PsiComment> commentCollection = PsiTreeUtil.findChildrenOfType(root, PsiComment.class);
         PsiComment startComment = null;
         PsiComment endComment = null;
-        for (PsiComment comment : commentCollection)
-        {
+        for (PsiComment comment : commentCollection) {
             String value = comment.getText();
-            if (value != null && value.equals("/*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/"))
-            {
+            if (value != null && value.equals(BEGIN_BAJA_AUTO_GENERATED_CODE)) {
                 startComment = comment;
-            }
-            else if (value != null && value.equals("/*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/"))
-            {
+            } else if (value != null && value.equals(END_BAJA_AUTO_GENERATED_CODE)) {
                 endComment = comment;
             }
-            if (startComment != null && endComment != null)
-            // Add a folding descriptor for the literal expression at this node.
-            {
-                descriptors.add(new FoldingDescriptor(startComment.getNode(),
-                                                      new TextRange(startComment.getTextRange().getStartOffset(),
-                                                                    endComment.getTextRange().getEndOffset()),
-                                                      null));
+            if (startComment != null && endComment != null) {
+                descriptors.add(new FoldingDescriptor(startComment.getNode(), new TextRange(startComment.getTextRange().getStartOffset(),
+                        endComment.getTextRange().getEndOffset()), null));
                 startComment = null;
                 endComment = null;
             }
         }
-        return descriptors.toArray(new FoldingDescriptor[descriptors.size()]);
+        return descriptors.toArray(new FoldingDescriptor[]{});
     }
 
     @Override
-    public boolean isCollapsedByDefault(@NotNull ASTNode node)
-    {
+    public boolean isCollapsedByDefault(@NotNull ASTNode node) {
         return true;
     }
 
     @Override
-    public @Nullable String getPlaceholderText(@NotNull ASTNode node)
-    {
+    public @Nullable String getPlaceholderText(@NotNull ASTNode node) {
         return "BAJA GENCODE ...";
     }
 }
